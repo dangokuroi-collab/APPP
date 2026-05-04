@@ -14,8 +14,13 @@ import { SafeAreaProvider } from 'react-native-safe-area-context';
 import { Provider } from "react-redux";
 import StackNavigator from "./navigations/StackNavigator";
 import TabNavigator from "./navigations/TabNavigator";
+import AdminNavigator from "./navigations/AdminNavigator";
+import DeliveryNavigator from "./navigations/DeliveryNavigator";
 import { theme } from './styles/Theme';
 import store from "./store";
+import { useSelector, useDispatch } from 'react-redux';
+import { setUser } from './store/authSlice';
+import AsyncStorage from '@react-native-async-storage/async-storage';
 import './localization/i18n';
 
 const myTheme = createTheme({
@@ -56,18 +61,47 @@ const myTheme = createTheme({
 
 });
 
+const RootApp = () => {
+  const { isAuthenticated, user } = useSelector((state: any) => state.auth);
+  const dispatch = useDispatch();
+
+  React.useEffect(() => {
+    const loadUser = async () => {
+      const storedUser = await AsyncStorage.getItem('user');
+      if (storedUser) {
+        dispatch(setUser(JSON.parse(storedUser)));
+      }
+    };
+    loadUser();
+  }, [dispatch]);
+
+  const renderNavigator = () => {
+    if (!isAuthenticated) return <StackNavigator />;
+
+    switch (user?.role) {
+      case 'ADMIN':
+        return <AdminNavigator />;
+      case 'DELIVERY':
+        return <DeliveryNavigator />;
+      default:
+        return <TabNavigator />;
+    }
+  };
+
+  return (
+    <NavigationContainer>
+      <ThemeProvider theme={myTheme}>
+        {renderNavigator()}
+      </ThemeProvider>
+    </NavigationContainer>
+  );
+};
+
 const App = () => {
-  const isAuthenticated = true;
   return (
     <Provider store={store}>
       <SafeAreaProvider>
-        <NavigationContainer>
-          <ThemeProvider theme={myTheme}>
-            {
-              isAuthenticated ? <TabNavigator /> : <StackNavigator />
-            }
-          </ThemeProvider>
-        </NavigationContainer>
+        <RootApp />
       </SafeAreaProvider>
     </Provider>
   );
