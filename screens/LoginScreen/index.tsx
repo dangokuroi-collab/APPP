@@ -15,8 +15,11 @@ import AnimatedTextInput from '../../components/AnimatedInput';
 import Socials from '../../components/Socials';
 import ErrorBoundary from '../../components/HOC/ErrorBoundary';
 import AppContainer from '../../components/HOC/AppContainer';
+import { useDispatch } from 'react-redux';
+import { login } from '../../store/authSlice';
 
 const Login = ({ navigation }) => {
+    const dispatch = useDispatch();
     const { theme } = useTheme();
     const { t } = useTranslation();
 
@@ -35,7 +38,7 @@ const Login = ({ navigation }) => {
                     <Formik
                         initialValues={{ email: '', password: '' }}
                         validationSchema={validationSchema}
-                        onSubmit={values => console.log(values)}
+                        onSubmit={values => dispatch(login(values) as any)}
                     >
                         {({ handleChange, handleBlur, handleSubmit, values, errors, touched }) => (
                             <>

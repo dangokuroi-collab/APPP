@@ -1,19 +1,20 @@
-/**
- * ProfileScreen.tsx
- * Copyright (c) 2023 James Ugbanu.
- * Licensed under the MIT License.
- */
-
 import React from 'react';
 import { View } from 'react-native';
-import { Text } from '@rneui/themed';
+import { Text, Button } from '@rneui/themed';
 import { styles } from './styles';
+import { useDispatch, useSelector } from 'react-redux';
+import { logout } from '../../store/authSlice';
 
 const Profile = () => {
+    const dispatch = useDispatch();
+    const { user } = useSelector((state: any) => state.auth);
 
     return (
         <View style={styles.container}>
-             <Text>Profile!</Text>
+             <Text h2>Profile</Text>
+             <Text>Email: {user?.email}</Text>
+             <Text>Role: {user?.role}</Text>
+             <Button title="Logout" onPress={() => dispatch(logout() as any)} containerStyle={{ marginTop: 20 }} />
         </View>
     );
 }
