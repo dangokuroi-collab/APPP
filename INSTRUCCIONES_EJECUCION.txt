@@ -1,0 +1,35 @@
+# Guía de Ejecución del Proyecto (Referencia Rápida)
+
+Esta guía te ayudará a ejecutar la aplicación en tu computadora de manera sencilla.
+
+## Requisitos Previos
+1. Tener instalado **Node.js** (puedes descargarlo en nodejs.org).
+2. Tener un celular con la aplicación **Expo Go** instalada (disponible en App Store y Google Play).
+
+## Pasos para ejecutar el programa
+
+1. **Instalar las librerías necesarias:**
+   Abre una terminal (consola) en la carpeta raíz del proyecto y escribe el siguiente comando:
+   ```bash
+   npm install --legacy-peer-deps
+   ```
+   *Nota: Usamos `--legacy-peer-deps` para asegurar que todas las herramientas de inteligencia artificial (TensorFlow) se instalen correctamente.*
+
+2. **Iniciar la aplicación:**
+   Una vez que termine la instalación, escribe este comando:
+   ```bash
+   npx expo start
+   ```
+
+3. **Ver la aplicación en tu celular:**
+   - Al ejecutar el comando anterior, aparecerá un **código QR** en la terminal.
+   - Abre la aplicación **Expo Go** en tu celular.
+   - Si usas Android: selecciona "Scan QR Code" y escanea el código de la terminal.
+   - Si usas iPhone: abre la cámara normal de tu celular, apunta al código QR y presiona el enlace que aparece para abrirlo en Expo Go.
+
+## Notas Adicionales
+- **Conexión al Servidor (API):** Si usas un celular físico, debes cambiar la palabra `'localhost'` por la dirección IP de tu computadora en el archivo `services/api.ts`.
+- Asegúrate de que tu computadora y tu celular estén conectados a la **misma red Wi-Fi**.
+- Si el servidor no conecta, intenta presionar la tecla `s` en la terminal para cambiar entre modo LAN y modo Tunnel.
+
+¡Listo! Con esto deberías poder ver y probar la aplicación.

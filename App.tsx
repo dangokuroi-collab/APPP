@@ -67,9 +67,13 @@ const RootApp = () => {
 
   React.useEffect(() => {
     const loadUser = async () => {
-      const storedUser = await AsyncStorage.getItem('user');
-      if (storedUser) {
-        dispatch(setUser(JSON.parse(storedUser)));
+      try {
+        const storedUser = await AsyncStorage.getItem('user');
+        if (storedUser) {
+          dispatch(setUser(JSON.parse(storedUser)));
+        }
+      } catch (error) {
+        // console.error('Error loading user', error);
       }
     };
     loadUser();

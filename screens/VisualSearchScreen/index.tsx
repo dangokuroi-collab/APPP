@@ -40,7 +40,7 @@ const VisualSearch = ({ navigation }) => {
             navigation.navigate('CropPhoto', source)
           }
         } catch (error) {
-          console.log(error);
+
         }
       };
 

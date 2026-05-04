@@ -34,7 +34,7 @@ const CropPhoto = ({ route, navigation }) => {
             const newPredictions = await await mobilenetClassification.classify(
                 rawImageData
             );;
-            console.log(newPredictions);
+
             setIsSearching(false);
         } catch (error) {
             setIsSearching(false);
