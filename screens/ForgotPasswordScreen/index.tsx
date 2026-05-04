@@ -32,7 +32,7 @@ const ForgotPassword = () => {
                 <Formik
                     initialValues={{ email: '' }}
                     validationSchema={validationSchema}
-                    onSubmit={values => console.log(values)}
+                    onSubmit={values => {}}
                 >
                     {({ handleChange, handleBlur, handleSubmit, values, errors, touched }) => (
                         <>

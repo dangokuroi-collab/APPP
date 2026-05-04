@@ -37,7 +37,7 @@ const Register = ({ navigation }) => {
                     <Formik
                         initialValues={{ name: '', email: '', password: '' }}
                         validationSchema={validationSchema}
-                        onSubmit={values => console.log(values)}
+                        onSubmit={values => {}}
                     >
                         {({ handleChange, handleBlur, handleSubmit, values, errors, touched }) => (
                             <>

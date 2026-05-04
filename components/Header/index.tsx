@@ -21,6 +21,7 @@ interface HeaderComponentProps {
     isShowHeading?: boolean;
     isShowBackIcon?: boolean;
     isShowSearchIcon?: boolean;
+    title?: string;
 };
 
 
@@ -30,7 +31,7 @@ const Header: React.FunctionComponent<HeaderComponentProps> = (props) => {
     const dispatch: Dispatch<any> = useDispatch();
     const { theme } = useTheme();
 
-    let title = getHeaderTitle(route);
+    let title = props.title || getHeaderTitle(route);
     const isShowHeader = isShowBackIcon || isShowSearchIcon;
     title = title ? title : productState.category;
 

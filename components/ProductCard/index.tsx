@@ -87,7 +87,7 @@ const ProductCard = (props: ProductCardProps) => {
                         color={button.iconColor}
                         size={button.iconSize}
                         containerStyle={[{ position: 'absolute', bottom: -20, right: -10, backgroundColor: '#fff' }, buttonStyle]}
-                        onPress={() => console.log('hello')} />
+                        onPress={() => {}} />
                 </TouchableOpacity>
             </View>
             <View style={styles().productInfo}>
